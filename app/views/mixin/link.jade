@@ -1,0 +1,43 @@
+mixin link(title, href, text)
+  - if (typeof(text) === 'undefined') text = title
+  - if (typeof(href) === 'undefined') href = '#'
+  a(href=href, title=title)&attributes(attributes)
+    if block
+      block
+    else
+      !=text
+
+
+mixin trScore(icon, name, thang, hoa, thua, bthang, bthua, hs, d)
+  tr
+    td
+      span(class="icon-#{icon}")
+      span!=name
+    td: span!=thang
+    td: span!=hoa
+    td: span!=thua
+    td: span!=bthang
+    td: span!=bthua
+    td: span!=hs
+    td: span!=d
+
+mixin scoreList(lists)
+  each list in lists
+    +trScore(list.icon, list.name, list.thang, list.hoa, list.thua, list.bthang, list.bthua, list.hs, list.d)
+
+mixin porfolio-list(image, clss, num, nameP, numP, position)
+  .porfo-item.col-xs-4.mix(class="#{clss}")(data-custom-order="#{num}")
+    figure.effect-zoe
+      img(src="images/upload/#{image}.jpg", alt="#{nameP}")
+      figcaption
+        h2!=nameP
+        p.icon-links
+          a(href="#")
+            span.icon-heart
+          a(href="#")
+            span.icon-eye
+        p.description
+          span!=numP
+          span!=position
+
+mixin Team-list
